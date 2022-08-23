@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('layout.app');
+    return view('home');
 });
 
 Route::get('/barang', function () {
