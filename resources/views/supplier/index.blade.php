@@ -30,7 +30,7 @@
         <tbody>
             <tr>
                 <td>1</td>
-                <td>Mediatek</td>
+                <td>Mediatech</td>
                 <td>031-343334</td>
                 <td>Jl. Raya Gubeng 14</td>                
                 <td>

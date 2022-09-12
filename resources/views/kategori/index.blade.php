@@ -26,14 +26,17 @@
         </thead>
 
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>ATK</td>
-                <td>
-                    <a href="#" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i></a>
-                    <a href="#" class="btn btn-danger btn-sm"> <i class="fa-solid fa-trash"></i></a>
-                </td>
-            </tr>
+          @foreach ($kategori as $item)
+          <tr>
+              <td>{{$loop->iteration}}</td>
+              <td>{{$item->nama}}</td>
+              <td>
+                  <a href="/kategori/edit/{{$item->id}}" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i></a>
+                  <a href="/kategori/hapus/{{$item->id}}" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i></a>
+                  
+              </td>
+          </tr>
+          @endforeach
         </tbody>
     </table>
     </div>
@@ -44,17 +47,24 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambahkan Data</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambahkan Kategori</h5>
         <button type="button" class="btn-batal" data-bs-dismiss="modal" aria-label="Batal"></button>
       </div>
       <div class="modal-body">
-        mohon diisi...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary">Tambah</button>
+        <form action="{{route('kategori.store')}}" method="POST">
+          @csrf
+          <div class="form-gorup">
+            <label for="nama">Nama</label>
+            <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror">
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+      </form>
       </div>
     </div>
   </div>
-</div>
-@endsection
+  @endsection
