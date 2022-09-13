@@ -10,36 +10,40 @@
         <div class="card-title">
             <h5>Data Supplier</h5>
 
-            <button type"button" class="btn btn-success btn-sm float-end" data-bs-toggle="modal"
-            data-bs-target="#modalTambah"><i class="fa fa-plus"></i></button>
+            <a class="btn btn-success btn-sm float-end" href="{{route('supplier.create')}}">
+              <i class="fa fa-plus"></i></a>
         </div>
     </div>
 
     <div class="card-body">
-    <table class="table table-striped mt-5">
-        <thead>
-            <tr>
-                <th style="width: 5%">No.</th>
-                <th>Nama</th>
-                <th>Telepon</th>
-                <th>Alamat</th>
-                <th style="width: 10%">Aksi</th>
-            </tr>
-        </thead>
+      <table class="table table-striped mt-5">
+            <thead>
+                <tr>
+                    <th style="width: 5%">No.</th>
+                    <th>Nama</th>
+                    <th>Telepon</th>
+                    <th>Alamat</th>
+                    <th style="width: 10%">Aksi</th>
+                </tr>
+            </thead>
 
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Mediatech</td>
-                <td>031-343334</td>
-                <td>Jl. Raya Gubeng 14</td>                
-                <td>
-                    <a href="#" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i></a>
-                    <a href="#" class="btn btn-danger btn-sm"> <i class="fa-solid fa-trash"></i></a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            <tbody>
+              @foreach ($supplier as $item)
+              <tr>
+                  <td>{{$loop->iteration}}</td>
+                  <td>{{$item->nama}}</td>
+                  <td>{{$item->telepon}}</td>
+                  <td>{{$item->alamat}}</td>
+                  <td>
+                    <a href="/supplier/{{$item->id}}/edit" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i></a>
+                    <a href="/supplier/{{$item->id}}/hapus" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i></a>
+                      
+                  </td>
+              </tr>
+              @endforeach
+            </tbody>
+      </table>
+    </div>
     </div>
 </div>
 
@@ -48,16 +52,23 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambahkan Data</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambahkan Supplier</h5>
         <button type="button" class="btn-batal" data-bs-dismiss="modal" aria-label="Batal"></button>
       </div>
+
       <div class="modal-body">
-        mohon diisi...
+        <form action="{{route('supplier.store')}}" method="POST">
+                @csrf
+                <div class="form-gorup">
+                  <label for="nama">Nama</label>
+                  <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror">
+                </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary">Tambah</button>
-      </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+              <button type="button" class="btn btn-primary">Simpan</button>
+            </div>
+        </form>
     </div>
   </div>
 </div>

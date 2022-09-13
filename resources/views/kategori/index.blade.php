@@ -16,29 +16,29 @@
     </div>
 
     <div class="card-body">
-    <table class="table table-striped mt-5">
-        <thead>
-            <tr>
-                <th style="width: 5%">No.</th>
-                <th>Nama</th>
-                <th style="width: 10%">Aksi</th>
-            </tr>
-        </thead>
+      <table class="table table-striped mt-5">
+            <thead>
+                <tr>
+                    <th style="width: 5%">No.</th>
+                    <th>Nama</th>
+                    <th style="width: 10%">Aksi</th>
+                </tr>
+            </thead>
 
-        <tbody>
-          @foreach ($kategori as $item)
-          <tr>
-              <td>{{$loop->iteration}}</td>
-              <td>{{$item->nama}}</td>
-              <td>
-                  <a href="/kategori/edit/{{$item->id}}" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i></a>
-                  <a href="/kategori/hapus/{{$item->id}}" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i></a>
-                  
-              </td>
-          </tr>
-          @endforeach
-        </tbody>
-    </table>
+            <tbody>
+              @foreach ($kategori as $item)
+              <tr>
+                  <td>{{$loop->iteration}}</td>
+                  <td>{{$item->nama}}</td>
+                  <td>
+                      <a href="/kategori/edit/{{$item->id}}" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i></a>
+                      <a href="/kategori/hapus/{{$item->id}}" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i></a>
+                      
+                  </td>
+              </tr>
+              @endforeach
+            </tbody>
+      </table>
     </div>
 </div>
 
@@ -50,19 +50,21 @@
         <h5 class="modal-title" id="exampleModalLabel">Tambahkan Kategori</h5>
         <button type="button" class="btn-batal" data-bs-dismiss="modal" aria-label="Batal"></button>
       </div>
+      
       <div class="modal-body">
         <form action="{{route('kategori.store')}}" method="POST">
           @csrf
-          <div class="form-gorup">
-            <label for="nama">Nama</label>
-            <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror">
-          </div>
+            <div class="form-gorup">
+              <label for="nama">Nama</label>
+              <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror">
+            </div>
           
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-          <button type="submit" class="btn btn-primary">Simpan</button>
-        </div>
+      </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+          </div>
       </form>
       </div>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pembelian;
+use App\Models\Barang;
 use Illuminate\Http\Request;
 
 class PembelianController extends Controller
@@ -14,7 +15,9 @@ class PembelianController extends Controller
      */
     public function index()
     {
-        //
+        
+        $pembelian = Pembelian::all();
+        return view('pembelian.index', compact('pembelian'));
     }
 
     /**
@@ -24,7 +27,8 @@ class PembelianController extends Controller
      */
     public function create()
     {
-        //
+        $barang = Barang::all();
+        return view('pembelian.add', compact('barang'));
     }
 
     /**
@@ -35,7 +39,15 @@ class PembelianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'barang_id' => 'required',
+            'jumlah' => 'required|numeric',
+            'harga' => 'required|numeric',
+            
+        ]);
+
+        $pembelian = pembelian::create($request->all());
+        return redirect('pembelian');
     }
 
     /**
@@ -55,9 +67,11 @@ class PembelianController extends Controller
      * @param  \App\Models\Pembelian  $pembelian
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pembelian $pembelian)
+    public function edit($id)
     {
-        //
+        $barang = Barang::all();
+        $pembelian = Pembelian::find($id);
+        return view('pembelian.edit', compact('pembelian', 'barang'));
     }
 
     /**
@@ -69,7 +83,18 @@ class PembelianController extends Controller
      */
     public function update(Request $request, Pembelian $pembelian)
     {
-        //
+        $validate = $request->validate([
+            'barang_id' => 'required',
+            'jumlah' => 'required|numeric',
+            'harga' => 'required|numeric',
+        ]);
+
+        $pembelian ->update([            
+            'barang_id' => $request->barang_id,            
+            'jumlah' => $request->jumlah,            
+            'harga' => $request->harga,                   
+        ]);
+        return redirect('pembelian');
     }
 
     /**
@@ -80,6 +105,9 @@ class PembelianController extends Controller
      */
     public function destroy(Pembelian $pembelian)
     {
-        //
+        $pembelian = Pembelian::find($id);
+        $pembelian->delete();
+
+        return redirect('pembelian');
     }
 }

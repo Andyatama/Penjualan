@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark navbar-expand-lg bg-success">
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/"><i class="fa-solid fa-dolly"></i> The Store</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 

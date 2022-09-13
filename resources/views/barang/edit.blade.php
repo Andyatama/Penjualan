@@ -40,7 +40,7 @@ Barang
                     <div class="form-group">
                         <label for="nama">Harga</label>
                         <input type="text" name="harga" id="harga" value="{{$b->harga}}" 
-                        class="form-control" @error('harga') is-invalid @enderror">
+                        class="form-control @error('harga') is-invalid @enderror">
                         @error('harga')
                         <div class="text-danger">
                             {{$message}}

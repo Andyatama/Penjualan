@@ -14,7 +14,9 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        $supplier = Supplier::all();
+        
+        return view('supplier.index', compact('supplier'));
     }
 
     /**
@@ -24,7 +26,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('supplier.add');
     }
 
     /**
@@ -35,7 +37,14 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            $validate = $request->validate([
+                'nama' => 'required|max:255|alpha',
+                'telepon' => 'required|numeric',
+                'alamat' => 'required'
+            ]);
+
+        $supplier = Supplier::create($request->all());
+        return redirect('supplier');
     }
 
     /**
@@ -55,9 +64,10 @@ class SupplierController extends Controller
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function edit(Supplier $supplier)
+    public function edit($id)
     {
-        //
+        $supplier = Supplier::find($id);
+        return view('supplier.edit', compact('supplier'));
     }
 
     /**
@@ -69,7 +79,19 @@ class SupplierController extends Controller
      */
     public function update(Request $request, Supplier $supplier)
     {
-        //
+        $validate = $request->validate([
+            'nama' => 'required|max:255',
+            'telepon' => 'required|numeric',
+            'alamat' => 'required'
+        ]);
+
+        $supplier->update([
+            'nama'=> $request->nama,
+            'telepon'=> $request->telepon,
+            'alamat'=> $request->alamat
+        ]);
+
+        return redirect('supplier');
     }
 
     /**
@@ -78,8 +100,11 @@ class SupplierController extends Controller
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Supplier $supplier)
+    public function destroy($id)
     {
-        //
+        $supplier = Supplier::find($id);
+        $supplier->delete();
+
+        return redirect('supplier');
     }
 }

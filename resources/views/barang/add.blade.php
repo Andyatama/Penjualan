@@ -40,7 +40,7 @@ Barang
                     <div class="form-group">
                         <label for="nama">Harga</label>
                         <input type="text" name="harga" id="harga" value="{{old('harga')}}" 
-                        class="form-control" @error('harga') is-invalid @enderror">
+                        class="form-control @error('harga') is-invalid @enderror">
                         @error('harga')
                         <div class="text-danger">
                             {{$message}}
@@ -114,11 +114,11 @@ Barang
             </div>
         {{-- Baris Bawah Akhir --}}
 
-        <div class="modal-footer mt-5">
-            <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> SImpan </button>
+            <div class="modal-footer mt-5">
+                <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> SImpan </button>
 
-        </div>
-    </form>
+            </div>
+        </form>
     </div>
 </div>
 
