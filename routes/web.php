@@ -7,6 +7,7 @@ use App\Http\Controllers\{
     SupplierController,
     PembeliController,
     PembelianController,
+    PenjualanController,
     DashboardController
 };
 
@@ -40,5 +41,6 @@ Route::get('/pembelian/edit/{id}', [PembelianController::class, 'edit']);
 Route::get('/pembelian/hapus/{id}', [PembelianController::class, 'destroy']);
 
 //Route Penjualan
-
-
+Route::resource('/penjualan', PenjualanController::class);
+Route::get('/penjualan/{id}/edit', [PenjualanController::class, 'edit']);
+Route::get('/penjualan/{id}/hapus', [PenjualanController::class, 'destroy']);

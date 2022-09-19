@@ -84,7 +84,7 @@ Barang
                                 {{$message}}
                             </div>
                             @enderror
-                            <option value="{{$b->supplier_id}}" selected>{{$b->supplier->nama}}</option>
+                            <option value="" selected>{{! empty($item->supplier->nama) ? $item->supplier->nama : ''}}</option>
                             @foreach ($supplier as $s)
                                 <option value="{{$s->id}}">{{$s->nama}}</option>
                             @endforeach
@@ -104,7 +104,7 @@ Barang
                             {{$message}}
                         </div>
                         @enderror
-                        <option value="{{$b->kategori_id}}" selected>{{$b->kategori->nama}}</option>
+                        <option value="" selected>{{! empty($item->kategori->nama) ? $item->kategori->nama : ''}}</option>
                         @foreach ($kategori as $item)
                                 <option value="{{$item->id}}">{{$item->nama}}</option>
                             @endforeach
