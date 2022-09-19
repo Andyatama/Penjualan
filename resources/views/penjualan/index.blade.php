@@ -10,8 +10,8 @@
         <div class="card-title">
             <h5>Data Penjualan</h5>
 
-            <button type"button" class="btn btn-success btn-sm float-end" data-bs-toggle="modal"
-            data-bs-target="#modalTambah"><i class="fa fa-plus"></i></button>
+            <a class="btn btn-success btn-sm float-end" href="{{route('penjualan.create')}}">
+              <i class="fa fa-plus"></i></a>
         </div>
     </div>
 
@@ -24,24 +24,23 @@
                 <th>Pembeli</th>
                 <th>Jumlah</th>
                 <th>Harga</th>
-                <th>Tanggal</th>
                 <th style="width: 10%">Aksi</th>
             </tr>
         </thead>
 
         <tbody>
+          @foreach ($pembeli as $item)
             <tr>
-                <td>1</td>
-                <td>kursi</td>
-                <td>Dimas</td>
-                <td>5</td>
-                <td>50.000</td>
-                <td>12 Februari 2020</td>                
-                <td>
-                    <a href="#" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i></a>
-                    <a href="#" class="btn btn-danger btn-sm"> <i class="fa-solid fa-trash"></i></a>
+              <td>{{$loop->iteration}}</td>
+              <td>{{$item->nama}}</td>
+              <td>{{$item->jumlah}}</td>
+              <td>{{$item->harga}}</td>
+              <td>
+                <a href="/penjualan/{{$item->id}}/edit" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i></a>
+                <a href="/penjualan/{{$item->id}}/hapus" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i></a>
                 </td>
             </tr>
+          @endforeach
         </tbody>
     </table>
     </div>

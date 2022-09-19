@@ -9,11 +9,11 @@ use App\Models\Barang;
 class Pembelian extends Model
 {
     use HasFactory;
-
     protected $table = 'pembelian';
+
     protected $guarded = [];
 
     public function barang(){
-        return $this->belongsToMany(Barang::class);
+        return $this->belongsTo(Barang::class);
     }
 }
